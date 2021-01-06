@@ -4,9 +4,11 @@ import Entity.Executavel;
 import Robo.AppRobo;
 import TemplateContabil.Control.ControleTemplates;
 import TemplateContabil.Model.Entity.Importation;
+import fileManager.FileManager;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import org.ini4j.Ini;
 
 public class RobotEfiorezeImportation {
 
@@ -20,27 +22,29 @@ public class RobotEfiorezeImportation {
 
             String pastaEmpresa = robo.getParametro("pastaEmpresa").getString();
             String pastaAnual = robo.getParametro("pastaAnual").getString();
-            String pastaMensal = robo.getParametro("pastaMensal").getString();
-            String nomeTemplate = robo.getParametro("nomeTemplate").getString();
-            String idTemplate = robo.getParametro("idTemplate").getString();
-            String filtroArquivo = robo.getParametro("filtroArquivo").getString();
+            String pastaMensal = robo.getParametro("pastaMensal").getString();            
 
+            //Ini
+            Ini ini = new Ini(FileManager.getFile("efioreze.ini"));
+            
+            //Colunas
             Map<String, String> colunas = new HashMap<>();
-            colunas.put("data", robo.getParametro("colunaData").getString());
-            colunas.put("documento", robo.getParametro("colunaDocumento").getString());
-            colunas.put("pretexto", robo.getParametro("colunaPreTexto").getString());
-            colunas.put("historico", robo.getParametro("colunaHistorico").getString());
-            colunas.put("entrada", robo.getParametro("colunaEntrada").getString());
-            colunas.put("saida", robo.getParametro("colunaSaida").getString());
-            colunas.put("valor", robo.getParametro("colunaValor").getString());
+            colunas.put("data", ini.get("Colunas", "data"));
+            colunas.put("documento", ini.get("Colunas", "documento"));
+            colunas.put("pretexto", ini.get("Colunas", "pretexto"));
+            colunas.put("historico", ini.get("Colunas", "historico"));
+            colunas.put("entrada", ini.get("Colunas", "entrada"));
+            colunas.put("saida", ini.get("Colunas", "saida"));
+            colunas.put("valor", ini.get("Colunas", "valor"));
 
             int mes = robo.getParametro("mes").getMes();
             int ano = robo.getParametro("ano").getInteger();
-            nomeApp = "Importação " + pastaEmpresa + " - " + nomeTemplate;
+            nomeApp = "Importação " + pastaEmpresa + " Bancos ";
 
             robo.setNome(nomeApp);
             robo.executar(
-                    principal(mes, ano, pastaEmpresa, pastaAnual, pastaMensal, nomeTemplate, idTemplate, filtroArquivo, colunas)
+                    //Banrisul
+                    principal(mes, ano, pastaEmpresa, pastaAnual, pastaMensal, "Banrisul", "efioreze13", "banri;concili.xlsx", colunas)
             );
         } catch (Exception e) {
             System.out.println("Ocorreu um erro na aplicação: " + e);
