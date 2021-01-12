@@ -22,11 +22,12 @@ public class RobotEfiorezeImportation {
 
             String pastaEmpresa = robo.getParametro("pastaEmpresa").getString();
             String pastaAnual = robo.getParametro("pastaAnual").getString();
-            String pastaMensal = robo.getParametro("pastaMensal").getString();            
+            String pastaMensal = robo.getParametro("pastaMensal").getString();
+            String config = robo.getParametro("config").getString();
 
             //Ini
             Ini ini = new Ini(FileManager.getFile("efioreze.ini"));
-            
+
             //Colunas
             Map<String, String> colunas = new HashMap<>();
             colunas.put("data", ini.get("Colunas", "data"));
@@ -44,7 +45,17 @@ public class RobotEfiorezeImportation {
             robo.setNome(nomeApp);
             robo.executar(
                     //Banrisul
-                    principal(mes, ano, pastaEmpresa, pastaAnual, pastaMensal, "Banrisul", "efioreze13", "banri;concili.xlsx", colunas)
+                    principal(mes, ano, pastaEmpresa, pastaAnual, pastaMensal,
+                            "Banrisul", config + "13", "banri;concili.xlsx", colunas)
+                    + //Banco do Brasil
+                    principal(mes, ano, pastaEmpresa, pastaAnual, pastaMensal,
+                            "Banco do Brasil", config + "17", "bb;concili.xlsx", colunas)
+                    + //CEF
+                    principal(mes, ano, pastaEmpresa, pastaAnual, pastaMensal,
+                            "CEF", config + "10", "cef;concili.xlsx", colunas)
+                    + //Sicredi
+                    principal(mes, ano, pastaEmpresa, pastaAnual, pastaMensal,
+                            "Sicredi", config + "2138", "sicredi;concili.xlsx", colunas)
             );
         } catch (Exception e) {
             System.out.println("Ocorreu um erro na aplicação: " + e);
@@ -64,7 +75,7 @@ public class RobotEfiorezeImportation {
             controle.setPasta(pastaAnual, pastaMensal);
 
             Map<String, Executavel> execs = new LinkedHashMap<>();
-            execs.put("Procurando arquivo", controle.new defineArquivoNaImportacao(filtroArquivo,importation));
+            execs.put("Procurando arquivo", controle.new defineArquivoNaImportacao(filtroArquivo, importation));
             execs.put("Criando template", controle.new converterArquivoParaTemplate(importation));
 
             return AppRobo.rodarExecutaveis(nomeApp, execs);
