@@ -21,8 +21,8 @@ public class RobotEfiorezeImportation {
             robo.definirParametros();
 
             String pastaEmpresa = robo.getParametro("pastaEmpresa").getString();
-            String pastaAnual = robo.getParametro("pastaAnual").getString();
-            String pastaMensal = robo.getParametro("pastaMensal").getString();
+            String pastaAnual = "Extratos"; //robo.getParametro("pastaAnual").getString();
+            String pastaMensal = ""; //robo.getParametro("pastaMensal").getString();
             String config = robo.getParametro("config").getString();
 
             //Ini
