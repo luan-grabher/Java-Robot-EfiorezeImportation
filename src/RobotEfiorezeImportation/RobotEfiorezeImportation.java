@@ -46,16 +46,16 @@ public class RobotEfiorezeImportation {
             robo.executar(
                     //Banrisul
                     principal(mes, ano, pastaEmpresa, pastaAnual, pastaMensal,
-                            "Banrisul", config + "13", "banri;concili.xlsx", colunas)
+                            "Banrisul", config + "13", "banri;concili;.pdf", colunas)
                     + //Banco do Brasil
                     principal(mes, ano, pastaEmpresa, pastaAnual, pastaMensal,
-                            "Banco do Brasil", config + "17", "bb;concili.xlsx", colunas)
+                            "Banco do Brasil", config + "17", "bb;concili;.pdf", colunas)
                     + //CEF
                     principal(mes, ano, pastaEmpresa, pastaAnual, pastaMensal,
-                            "CEF", config + "10", "cef;concili.xlsx", colunas)
+                            "CEF", config + "10", "cef;concili;.pdf", colunas)
                     + //Sicredi
                     principal(mes, ano, pastaEmpresa, pastaAnual, pastaMensal,
-                            "Sicredi", config + "2138", "sicredi;concili.xlsx", colunas)
+                            "Sicredi", config + "2138", "sicredi;concili;.pdf", colunas)
             );
         } catch (Exception e) {
             System.out.println("Ocorreu um erro na aplicação: " + e);
