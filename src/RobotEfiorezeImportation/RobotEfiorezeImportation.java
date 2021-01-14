@@ -49,7 +49,7 @@ public class RobotEfiorezeImportation {
                             "Banrisul", config + "13", "banri;concili;.pdf", colunas)
                     + //Banco do Brasil
                     principal(mes, ano, pastaEmpresa, pastaAnual, pastaMensal,
-                            "Banco do Brasil", config + "17", "bb;concili;.pdf", colunas)
+                            "Banco do Brasil", config + "7", "bb;concili;.pdf", colunas)
                     + //CEF
                     principal(mes, ano, pastaEmpresa, pastaAnual, pastaMensal,
                             "CEF", config + "10", "cef;concili;.pdf", colunas)
@@ -68,15 +68,15 @@ public class RobotEfiorezeImportation {
             Importation importation = new Importation(Importation.TIPO_EXCEL);
             importation.setIdTemplateConfig(idTemplate);
             importation.getExcelCols().putAll(colunas);
-            importation.setNome(nomeTemplate);
+            importation.setNome("Template " + nomeTemplate);
 
             ControleTemplates controle = new ControleTemplates(mes, ano);
             controle.setPastaEscMensal(pastaEmpresa);
             controle.setPasta(pastaAnual, pastaMensal);
 
             Map<String, Executavel> execs = new LinkedHashMap<>();
-            execs.put("Procurando arquivo", controle.new defineArquivoNaImportacao(filtroArquivo, importation));
-            execs.put("Criando template", controle.new converterArquivoParaTemplate(importation));
+            execs.put("Procurando arquivo " + nomeTemplate, controle.new defineArquivoNaImportacao(filtroArquivo, importation));
+            execs.put("Criando template " + nomeTemplate, controle.new converterArquivoParaTemplate(importation));
 
             return AppRobo.rodarExecutaveis(nomeApp, execs);
         } catch (Exception e) {

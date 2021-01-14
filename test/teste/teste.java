@@ -29,9 +29,9 @@ public class teste {
         String pastaEmpresa = "E.Fioreze";
         String pastaAnual = "Extratos";
         String pastaMensal = "";
-        String banco = "Template Banrisul teste (13)";
-        String idTemplate = "efioreze13";
-        String filtroArquivo = "banrisul;conci;.pdf";
+        String banco = "Template Teste CEF";
+        String idTemplate = "efioreze10";
+        String filtroArquivo = "cef;conci;.pdf";
         Map<String, String> colunas = new HashMap<>();
         colunas.put("data", "B");
         //colunas.put("documento", "");
