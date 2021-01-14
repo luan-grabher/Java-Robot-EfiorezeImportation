@@ -26,7 +26,7 @@ public class RobotEfiorezeImportation {
             String config = robo.getParametro("config").getString();
 
             //Ini
-            Ini ini = new Ini(FileManager.getFile("efioreze.ini"));
+            Ini ini = new Ini(FileManager.getFile("\\\\Zac\\Robos\\Tarefas\\Empresas\\Grafica Relampago\\efioreze.ini"));
 
             //Colunas
             Map<String, String> colunas = new HashMap<>();

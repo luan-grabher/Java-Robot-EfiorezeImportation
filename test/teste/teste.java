@@ -3,14 +3,28 @@ package teste;
 import RobotEfiorezeImportation.RobotEfiorezeImportation;
 import com.aspose.pdf.Document;
 import com.aspose.pdf.ExcelSaveOptions;
+import java.io.File;
+import java.net.URISyntaxException;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class teste {
 
     public static void main(String[] args) {
         test();
     }
+    public static void regexText(){
+        String str1 = "Pgto.doc : 012357/4 - Passalacqua (EST02160/4)";
+        String str2 = "          -2.098,96";
+        
+        String regex = "[^,]+";
+        
+        System.out.println("Regex 1: " + str1.matches(regex));
+        System.out.println("Regex 2: " + str2.matches(regex));
+    }
+    
     public static void convertPDF(){
         Document doc =  new Document("G:\\Contábil\\Clientes\\E.Fioreze\\Escrituração mensal\\2020\\Extratos\\11.2020\\banriteste.pdf");
         // Set Excel options
@@ -24,19 +38,19 @@ public class teste {
     }
     
     public static void test() {
-        int mes = 11;
+        int mes = 12;
         int ano = 2020;
-        String pastaEmpresa = "E.Fioreze";
+        String pastaEmpresa = "Grafica e Editora Relampago Ltda";
         String pastaAnual = "Extratos";
         String pastaMensal = "";
         String banco = "Template Teste CEF";
-        String idTemplate = "efioreze10";
+        String idTemplate = "grafica10";
         String filtroArquivo = "cef;conci;.pdf";
         Map<String, String> colunas = new HashMap<>();
         colunas.put("data", "B");
         //colunas.put("documento", "");
         colunas.put("pretexto", "");
-        colunas.put("historico", "G");
+        colunas.put("historico", "C##[^,]+;F##[^,]+;G");
         colunas.put("entrada", "D");
         colunas.put("saida", "-E");
         //colunas.put("valor", "");
