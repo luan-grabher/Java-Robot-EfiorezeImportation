@@ -1,4 +1,4 @@
-package teste;
+package RobotEfiorezeImportation.test;
 
 import RobotEfiorezeImportation.RobotEfiorezeImportation;
 import com.aspose.pdf.Document;

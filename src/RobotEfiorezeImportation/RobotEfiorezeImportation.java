@@ -20,13 +20,13 @@ public class RobotEfiorezeImportation {
 
             robo.definirParametros();
 
-            String pastaEmpresa = robo.getParametro("pastaEmpresa").getString();
-            String pastaAnual = "Extratos"; //robo.getParametro("pastaAnual").getString();
-            String pastaMensal = ""; //robo.getParametro("pastaMensal").getString();
-            String config = robo.getParametro("config").getString();
+            String pastaEmpresa = robo.getParametro("pastaEmpresa");
+            String pastaAnual = "Extratos";
+            String pastaMensal = "";
+            String config = robo.getParametro("config");
 
             //Ini
-            Ini ini = new Ini(FileManager.getFile("\\\\Zac\\Robos\\Tarefas\\Empresas\\Grafica Relampago\\efioreze.ini"));
+            Ini ini = new Ini(FileManager.getFile("efioreze.ini"));
 
             //Colunas
             Map<String, String> colunas = new HashMap<>();
@@ -38,8 +38,8 @@ public class RobotEfiorezeImportation {
             colunas.put("saida", ini.get("Colunas", "saida"));
             colunas.put("valor", ini.get("Colunas", "valor"));
 
-            int mes = robo.getParametro("mes").getMes();
-            int ano = robo.getParametro("ano").getInteger();
+            int mes = Integer.valueOf(robo.getParametro("mes"));
+            int ano = Integer.valueOf(robo.getParametro("ano"));
             nomeApp = "Importação " + pastaEmpresa + " Bancos ";
 
             robo.setNome(nomeApp);
